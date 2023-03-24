@@ -1,0 +1,5 @@
+---
+- name: Use role from github
+  hosts: ubuntus
+  roles:
+    - role: time
