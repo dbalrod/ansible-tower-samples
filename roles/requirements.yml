@@ -1,3 +1,3 @@
 roles:
-  - src: https://github.com/dbalrod/ntp.git
+  - src: git@github.com:dbalrod/ntp.git
     name: time
