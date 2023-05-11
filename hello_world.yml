@@ -4,4 +4,8 @@
     - name: Hello Message
       debug:
         msg: "Hello World!"
+    - name: Imprimir el sistema operativo
+      debug:
+        msg: "El sistema operativo de la máquina es {{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_version'] }}"
+
 
