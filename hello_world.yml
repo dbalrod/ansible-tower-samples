@@ -7,5 +7,9 @@
     - name: Imprimir el sistema operativo
       debug:
         msg: "El sistema operativo de la máquina es {{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_version'] }}"
-
-
+    - name: Obtener versión de Python
+      ansible.builtin.shell: "python3 --version"
+      register: python_version
+    - name: Guardar datos
+      shell: 'echo "{{ inventory_hostname }},{{python_version.stdout}}" >> /tmp/resultdata.csv'
+      delegate_to: localhost
