@@ -7,17 +7,28 @@
     - name: Imprimir el sistema operativo
       debug:
         msg: "El sistema operativo de la máquina es {{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_version'] }}"
-    - name: Obtener versión de Python Alpine
-      ansible.builtin.shell: "python3 --version"
-      register: python_version
+    - name: Alpine
+      block:
+        - name: Obtener versión de Python Alpine
+          ansible.builtin.shell: "python3 --version"
+          register: alpine_python_version
+        - name: Mostrar datos
+          debug:
+            var: alpine_python_version
+        - name: Guardar datos
+          shell: 'echo "{{ inventory_hostname }},{{alpine_python_version.stdout}}" >> /tmp/resultdata.csv'
+          delegate_to: localhost
       when: ansible_facts['distribution'] == "Alpine"
-    - name: Obtener versión de Python Ubuntu
-      ansible.builtin.shell: "python3 --version"
-      register: python_version
+    - name: Ubuntu
+      block:
+        - name: Obtener versión de Python Ubuntu
+          ansible.builtin.shell: "python3 --version"
+          register: ubuntu_python_version
+        - name: Mostrar datos
+          debug:
+            var: python_version
+        - name: Guardar datos
+            shell: 'echo "{{ inventory_hostname }},{{alpine_python_version.stdout}}" >> /tmp/resultdata.csv'
+          delegate_to: localhost
       when: ansible_facts['distribution'] == "Alpine"
-    - name: Mostrar datos
-      debug:
-        var: python_version
-    - name: Guardar datos
-      shell: 'echo "{{ inventory_hostname }},{{python_version.stdout}}" >> /tmp/resultdata.csv'
-      delegate_to: localhost
+    
