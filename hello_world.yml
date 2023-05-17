@@ -1,6 +1,6 @@
 - name: Hello World Sample
   hosts: all
-  tasks:https://github.com/dbalrod/ansible-tower-samples/blob/awx_examples/hello_world.yml
+  tasks:
     - name: Hello Message
       debug:
         msg: "Hello World!"
