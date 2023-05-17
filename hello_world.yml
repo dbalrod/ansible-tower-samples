@@ -30,5 +30,5 @@
         - name: Guardar datos
           shell: 'echo "{{ inventory_hostname }},{{ubuntu_python_version.stdout}}" >> /tmp/resultdata.csv'
           delegate_to: localhost
-      when: ansible_facts['distribution'] == "Alpine"
+      when: ansible_facts['distribution'] == "Ubuntu"
     
