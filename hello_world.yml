@@ -15,6 +15,9 @@
       ansible.builtin.shell: "python3 --version"
       register: python_version
       when: ansible_facts['distribution'] == "Alpine"
+    - name: Mostrar datos
+      debug:
+        var: python_version
     - name: Guardar datos
       shell: 'echo "{{ inventory_hostname }},{{python_version.stdout}}" >> /tmp/resultdata.csv'
       delegate_to: localhost
