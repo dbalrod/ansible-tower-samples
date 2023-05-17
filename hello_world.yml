@@ -28,7 +28,10 @@
           debug:
             var: ubuntu_python_version
         - name: Guardar datos
-          shell: 'echo "{{ AWX_PRIVATE_DATA_DIR }},$PWD,{{ inventory_hostname }},{{ubuntu_python_version.stdout}}" >> /tmp/resultdata.csv'
+          shell: 'echo "$AWX_PRIVATE_DATA_DIR,$PWD,{{ inventory_hostname }},{{ubuntu_python_version.stdout}}" >> /tmp/resultdata.csv'
           delegate_to: localhost
       when: ansible_facts['distribution'] == "Ubuntu"
+    - name: print magic vars
+      debug:
+        var: vars
     
