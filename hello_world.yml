@@ -26,7 +26,7 @@
           register: ubuntu_python_version
         - name: Mostrar datos
           debug:
-            var: python_version
+            var: ubuntu_python_version
         - name: Guardar datos
           shell: 'echo "{{ inventory_hostname }},{{alpine_python_version.stdout}}" >> /tmp/resultdata.csv'
           delegate_to: localhost
