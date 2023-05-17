@@ -16,7 +16,7 @@
           debug:
             var: alpine_python_version
         - name: Guardar datos
-          shell: 'echo "{{ base_dir }},$PWD,{{ inventory_hostname }},{{alpine_python_version.stdout}}" >> /tmp/resultdata.csv'
+          shell: 'echo "$AWX_PRIVATE_DATA_DIR,$PWD,{{ inventory_hostname }},{{alpine_python_version.stdout}}" >> /tmp/resultdata.csv'
           delegate_to: localhost
       when: ansible_facts['distribution'] == "Alpine"
     - name: Ubuntu
@@ -28,7 +28,7 @@
           debug:
             var: ubuntu_python_version
         - name: Guardar datos
-          shell: 'echo "{{ base_dir }},$PWD,{{ inventory_hostname }},{{ubuntu_python_version.stdout}}" >> /tmp/resultdata.csv'
+          shell: 'echo "{{ AWX_PRIVATE_DATA_DIR }},$PWD,{{ inventory_hostname }},{{ubuntu_python_version.stdout}}" >> /tmp/resultdata.csv'
           delegate_to: localhost
       when: ansible_facts['distribution'] == "Ubuntu"
     
