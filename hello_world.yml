@@ -28,7 +28,7 @@
           debug:
             var: ubuntu_python_version
         - name: Guardar datos
-          shell: 'echo "{{ inventory_hostname }},{{alpine_python_version.stdout}}" >> /tmp/resultdata.csv'
+          shell: 'echo "{{ inventory_hostname }},{{ubuntu_python_version.stdout}}" >> /tmp/resultdata.csv'
           delegate_to: localhost
       when: ansible_facts['distribution'] == "Alpine"
     
