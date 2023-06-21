@@ -4,6 +4,9 @@
     - name: Hello Message
       debug:
         msg: "Hello World!"
+    - name: Mostrar versión de Ansible empleada
+      debug:
+        var: ansible_version
     - name: Imprimir el sistema operativo
       debug:
         msg: "El sistema operativo de la máquina es {{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_version'] }}"
